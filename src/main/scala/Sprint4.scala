@@ -62,7 +62,7 @@ object Sprint4 extends App {
 
   // Define a source of restaurant arrays
   val postcodeResponses: Source[PostcodeRestaurants, NotUsed] =
-    Source(remainingPostcodes.take(5000))
+    Source(remainingPostcodes.take(3000))
       .mapAsync(8) { postcode =>
         YelpApi.fetchPostcode(postcode).map { response => (postcode -> response) }
       }
@@ -75,7 +75,7 @@ object Sprint4 extends App {
 
   val ioResultFuture = postcodeResponses.runWith(postcodeResponseSerializer)
 
-  val ioResult = Await.result(ioResultFuture, 300.seconds)
+  val ioResult = Await.result(ioResultFuture, 600.seconds)
   println(s"Written ${ioResult.count} bytes to $outputPath")
 
   // clean up
