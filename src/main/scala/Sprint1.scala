@@ -7,11 +7,7 @@ import akka.stream._
 import akka.stream.scaladsl._
 import akka.NotUsed
 
-import play.api.libs.json.JsObject
 import play.api.libs.ws.ahc.AhcWSClient
-
-// case class for all the restaurants in one postcode
-final case class PostcodeRestaurants(postcode: String, restaurants: List[JsObject])
 
 object Sprint1 extends App {
 
