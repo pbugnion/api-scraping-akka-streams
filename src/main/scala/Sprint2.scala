@@ -63,7 +63,7 @@ object Sprint2 extends App {
 
   val ioResultFuture = postcodeResponses.runWith(postcodeResponseSerializer)
 
-  val ioResult = Await.result(ioResultFuture, 60.seconds)
+  val ioResult = Await.result(ioResultFuture, 300.seconds)
   println(s"Written ${ioResult.count} bytes to $outputPath")
 
   // clean up
