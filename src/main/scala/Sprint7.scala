@@ -155,7 +155,7 @@ object Sprint7 extends App {
 
   val ioResultFuture = postcodeResponses.runWith(postcodeResponseSerializer)
 
-  val ioResult = Await.result(ioResultFuture, 2.hours)
+  val ioResult = Await.result(ioResultFuture, 31.days)
   log.info(s"Written ${ioResult.count} bytes to $outputPath")
 
   // clean up
