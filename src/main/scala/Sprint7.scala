@@ -29,7 +29,6 @@ object Sprint7 extends App {
 
   val outputPath = Paths.get("postcode_restaurants.json")
   val parallelismLevel = 8 // Number of concurrent threads to use to query the Yelp API
-  val maxErrors = 10 // Stop the stream after seeing this many error codes
 
   def serializePostcodeRestaurant(postcodeRestaurants: PostcodeRestaurants): JsObject =
     Json.obj(
