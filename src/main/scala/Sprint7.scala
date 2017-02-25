@@ -28,7 +28,7 @@ object Sprint7 extends App {
   implicit val ws = AhcWSClient()
 
   val outputPath = Paths.get("postcode_restaurants.json")
-  val parallelismLevel = 8 // Number of concurrent threads to use to query the Yelp API
+  val parallelismLevel = 2 // Number of concurrent threads to use to query the Yelp API
 
   def serializePostcodeRestaurant(postcodeRestaurants: PostcodeRestaurants): JsObject =
     Json.obj(
