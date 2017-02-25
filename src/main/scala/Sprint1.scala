@@ -27,7 +27,7 @@ object Sprint1 extends App {
   val postcodeResponses: Source[PostcodeRestaurants, NotUsed] =
     Source(postcodes.take(100))
       // Query the API for a postcode
-      .mapAsync(8) { postcode =>
+      .mapAsync(parallelismLevel) { postcode =>
         YelpApi.fetchPostcode(postcode).map { response => (postcode -> response) }
       }
       .filter { case (postcode, response) => response.status == 200 }
