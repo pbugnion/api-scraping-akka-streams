@@ -41,7 +41,7 @@ object Sprint1 extends App {
     case PostcodeRestaurants(postcode, restaurants) => println(restaurants)
   }
 
-  Thread.sleep(10000) // give the stream time to materialize
+  Thread.sleep(10000) // give the stream time to run
 
   // clean up
   ws.close()
