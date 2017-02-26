@@ -82,7 +82,10 @@ object Sprint7 extends App {
   val responsePartitioner = Partition[(String, WSResponse)](2, s => s._2.status match {
     case 200 => 0
     case 429 => 1
-    case status => println(s"bad status: $status") ; throw new IllegalStateException("bad")
+    case status =>
+      // other response statuses should have been filtered out already
+      log.error(s"Unexpected status code $status")
+      throw new IllegalStateException(s"Unexpected status code $status")
   })
 
   def errorFilter(log: Logger) = Flow[(String, WSResponse)].filter {
