@@ -25,8 +25,13 @@ object YelpApi {
       : List[JsObject] = {
     val businesses = (response.json \ "businesses").as[List[JsObject]]
     businesses.filter { business =>
-      val businessPostcode = (business \ "location" \ "zip_code").as[String]
-      Postcode.normalize(businessPostcode) ==  Postcode.normalize(postcode)
+      val businessPostcodeMaybe = (business \ "location" \ "zip_code").asOpt[String]
+      businessPostcodeMaybe match {
+        case Some(businessPostcode) =>
+          Postcode.normalize(businessPostcode) ==  Postcode.normalize(postcode)
+        case None =>
+          false
+      }
     }
   }
 }
