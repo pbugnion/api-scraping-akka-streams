@@ -148,8 +148,6 @@ object Sprint7 extends App {
     Source(remainingPostcodes)
       .via(fetcher(parallelismLevel, log, throttler))
       .via(StreamMonitor.monitor(1000) { count => log.info(s"Processed $count restaurants") })
-      .via(errorLogger)
-      .filter { case (postcode, response) => response.status == 200 }
       .map { case(postcode, response) =>
         val restaurants = YelpApi.parseSuccessfulResponse(postcode, response)
         PostcodeRestaurants(postcode, restaurants)
