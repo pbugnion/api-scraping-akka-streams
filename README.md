@@ -1,7 +1,13 @@
 
 # API scraping with Akka streams
 
-This is the code for an (as yet unpublished) blog post on building long-running, resilient API scrapers with Akka streams.
+This is the code for a [blog post](http://pascalbugnion.net/blog/scraping-apis-with-akka-streams.html) on building long-running, resilient API scrapers with Akka streams. 
+
+We build a program that sends 250,000 requests to the Yelp API over several
+days, gracefully handling unexpected behaviour, request limits and restarts. The
+code is organised into seven sprints. In each sprint, we improve our
+understanding of the behaviour of the API and improve the behaviour of our
+stream.
 
 ## Requirements
 
